@@ -1,22 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
 </head>
 <body>
-<script>
-  const contentUrl = new URL('content.html', window.location.href).href;
-  const newWindow = window.open('about:blank');
-  fetch(contentUrl)
-    .then(response => response.text())
-    .then(html => {
-      newWindow.document.open();
-      newWindow.document.write(html);
-      newWindow.document.close();
-    })
-    .catch(err => console.error(err));
-</script>
+  <iframe id="content"></iframe>
+  <script>
+    const site = "https://interim-sibby-cbv-32a44484.koyeb.app/";
+    const iframe = document.getElementById("content");
+    const doc = iframe.contentDocument;
+    doc.write(`
+      <style>
+        html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden;
+        }
+        iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+      </style>
+      <iframe src="${site}"></object>
+    `);
+
+  </script>
 </body>
 </html>
