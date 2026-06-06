@@ -11,30 +11,17 @@
 const newWindow = window.open('about:blank');
 
 if (newWindow) {
-    newWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Fullscreen Iframe</title>
-            <style>
-                html, body {
-                    margin: 0;
-                    padding: 0;
-                    height: 100%;
-                    overflow: hidden;
-                }
-                iframe {
-                    width: 100%;
-                    height: 100%;
-                    border: none;
-                }
-            </style>
-        </head>
-        <body>
-            <iframe src="https://interim-sibby-cbv-32a44484.koyeb.app/"></iframe>
-        </body>
-        </html>
-    `);
+    fetch('content.html')
+  .then(response => response.text())
+  .then(html => {
+
+    const newWindow = window.open('about:blank', '_blank');
+
+    newWindow.document.open();
+    newWindow.document.write(html);
+    newWindow.document.close();
+  })
+  .catch(err => console.error('Error loading HTML:', err));
 }
 </script>
 </body>
