@@ -7,17 +7,16 @@
 </head>
 <body>
 <script>
-
-const newWindow = window.open('about:blank');
-
-fetch('content.html')
-  .then(response => response.text())
-  .then(html => {
-    newWindow.document.open();
-    newWindow.document.write(html);
-    newWindow.document.close();
-  })
-  .catch(err => console.error(err));
+  const contentUrl = new URL('content.html', window.location.href).href;
+  const newWindow = window.open('about:blank');
+  fetch(contentUrl)
+    .then(response => response.text())
+    .then(html => {
+      newWindow.document.open();
+      newWindow.document.write(html);
+      newWindow.document.close();
+    })
+    .catch(err => console.error(err));
 </script>
 </body>
 </html>
