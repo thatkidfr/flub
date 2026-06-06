@@ -10,19 +10,14 @@
 
 const newWindow = window.open('about:blank');
 
-if (newWindow) {
-    fetch('content.html')
+fetch('content.html')
   .then(response => response.text())
   .then(html => {
-
-    const newWindow = window.open('about:blank', '_blank');
-
     newWindow.document.open();
     newWindow.document.write(html);
     newWindow.document.close();
   })
-  .catch(err => console.error('Error loading HTML:', err));
-}
+  .catch(err => console.error(err));
 </script>
 </body>
 </html>
